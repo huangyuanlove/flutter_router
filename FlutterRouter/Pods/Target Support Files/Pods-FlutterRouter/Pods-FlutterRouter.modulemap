@@ -1,0 +1,6 @@
+framework module Pods_FlutterRouter {
+  umbrella header "Pods-FlutterRouter-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -19,11 +19,11 @@ Widget getHomeWidget(String router) {
 
   String tempRouter = uri.path;
 
-  if (tempRouter.startsWith("/")) {
+  if (tempRouter.startsWith("/") && tempRouter.length > 1) {
     print("以 / 开头");
     tempRouter = tempRouter.substring(1);
   }
-  if (tempRouter.endsWith("/")) {
+  if (tempRouter.endsWith("/") && tempRouter.length > 1) {
     print("以 / 结尾");
     tempRouter = tempRouter.substring(0, tempRouter.length - 1);
   }

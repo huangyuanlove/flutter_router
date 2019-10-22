@@ -24,21 +24,31 @@ class _RouterOneWidgetState extends State<RouterOneWidget> {
     Bridge.getInstance().registerMethodAndHandler("on_result", (result) {
       setState(() {
         Map<String, dynamic> jsonResult = json.decode(result);
-        print("原生返回flutter时携带的参数 ： ${jsonResult}");
-        print("原生返回flutter时携带的参数 ： ${jsonResult.runtimeType}");
-        print("原生返回flutter时携带的参数 ： ${jsonResult["requestCode"]}");
-        print("原生返回flutter时携带的参数 ： ${jsonResult["data"]}");
         resultParams = jsonResult["data"].toString();
       });
     });
   }
 
+
+void _goBack() {
+    Bridge.getInstance().pop({"result": true, "data": DateTime.now().toIso8601String()});
+  }
   @override
   Widget build(BuildContext context) {
     print("RouterOneWidget --> ${context}");
     Bridge.getInstance().registerBuildContext(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.params['title']),
+        leading: IconButton(
+          onPressed: () {
+            _goBack();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
+
       body: Column(
         children: <Widget>[
           Text(widget.params['title']),
@@ -56,6 +66,8 @@ class _RouterOneWidgetState extends State<RouterOneWidget> {
             },
             child: Text("go to router_two"),
           ),
+//          WillPopScope(),
+
           Text("返回时携带的值${resultParams}"),
           RaisedButton(
             child: Text("打开原生"),

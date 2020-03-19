@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'router_two.dart';
 import 'bridge.dart';
 
@@ -54,6 +55,17 @@ void _goBack() {
           Text(widget.params['title']),
           RaisedButton(
             onPressed: () {
+
+              Fluttertoast.showToast(
+                  msg: "This is Center Short Toast",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIos: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (BuildContext context) {
                 return RouterTwoWidget({"title": "参数标题"});

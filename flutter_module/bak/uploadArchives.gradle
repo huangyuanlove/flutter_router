@@ -1,0 +1,13 @@
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://maven.chunyu.mobi/content/repositories/releases/") {
+                authentication(userName: maven_user, password: maven_password)
+            }
+            pom.groupId = 'me.chunyu.flutter'
+            pom.artifactId = 'flutter_test'
+            pom.version = '0.4.9'
+
+        }
+    }
+}
